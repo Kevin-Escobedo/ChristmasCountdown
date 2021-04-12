@@ -11,12 +11,17 @@ if __name__ == "__main__":
     try:
         api.verify_credentials()
         today = datetime.datetime.now()
-        christmas = datetime.datetime(today.year, 12, 25)
+        year = today.year
+        
+        if today.month >= 12 and today.day >= 25:
+            year += 1
+
+        christmas = datetime.datetime(year, 12, 25)
         daysLeft = countdown.getDaysUntil(christmas)
         if daysLeft == 1:
-            api.update_status("{} day until Christmas Day {}".format(daysLeft, today.year)) 
+            api.update_status("{} day until Christmas Day {}".format(daysLeft, year)) 
         else:
-            api.update_status("{} days until Christmas Day {}".format(daysLeft, today.year))
+            api.update_status("{} days until Christmas Day {}".format(daysLeft, year))
     except tweepy.error.TweepError:
         print("Authentication Error")
         
