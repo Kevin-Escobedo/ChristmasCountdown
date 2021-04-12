@@ -23,3 +23,4 @@ def getDaysUntil(date: datetime.datetime) -> int:
     date = datetime.datetime(year, date.month, date.day)
     delta = date - now
     return delta.days
+    
